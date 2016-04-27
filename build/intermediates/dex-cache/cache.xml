@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\Iuliia\Downloads\DisplayingBitmaps\TesseractSample\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="3469cb457f10f74c28cbc05f069b6c894f6cbdd0">
+        <dex dex="C:\Users\Iuliia\Downloads\DisplayingBitmaps\TesseractSample\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.2.1_54869a57662e93991340058e9236dc8af44ba9da.jar" />
+    </item>
+    <item
+        jar="C:\Users\Iuliia\Downloads\DisplayingBitmaps\TesseractSample\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="673d77a5bbddd766037f088e775df525c46407f0">
+        <dex dex="C:\Users\Iuliia\Downloads\DisplayingBitmaps\TesseractSample\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.2.1_9889bb0cf6d2f6a874baa2fdbb83253f6b0a138a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Iuliia\Downloads\DisplayingBitmaps\TesseractSample\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.1\jars\libs\internal_impl-23.2.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="607a3d0b8013b4ccbfeb0b7cb293351994e021fb">
+        <dex dex="C:\Users\Iuliia\Downloads\DisplayingBitmaps\TesseractSample\app\build\intermediates\pre-dexed\debug\internal_impl-23.2.1_82c13618b2b4960af7b2724b45e8b36cc2487a56.jar" />
+    </item>
+    <item
+        jar="C:\Users\Iuliia\AppData\Local\Android\android-sdk\extras\android\m2repository\com\android\support\support-annotations\23.2.1\support-annotations-23.2.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="ccb693bc0774fcb637246f7360de25b4af7df318">
+        <dex dex="C:\Users\Iuliia\Downloads\DisplayingBitmaps\TesseractSample\app\build\intermediates\pre-dexed\debug\support-annotations-23.2.1_f46652fe59d39e06428d29ae911cc040dffc11eb.jar" />
+    </item>
+    <item
+        jar="C:\Users\Iuliia\Downloads\DisplayingBitmaps\TesseractSample\app\build\intermediates\exploded-aar\com.rmtheis\tess-two\5.4.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="921b1c4306b10e7de53574523eb7f7144bd0707f">
+        <dex dex="C:\Users\Iuliia\Downloads\DisplayingBitmaps\TesseractSample\app\build\intermediates\pre-dexed\debug\com.rmtheis-tess-two-5.4.1_edc7a3887f98751be84a9b8f8550e5ef32f27f72.jar" />
+    </item>
+    <item
+        jar="C:\Users\Iuliia\Downloads\DisplayingBitmaps\TesseractSample\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e4d0cbb0b999604b349062f0214a0a228a7fd151">
+        <dex dex="C:\Users\Iuliia\Downloads\DisplayingBitmaps\TesseractSample\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.2.1_3d3b64feaf4214024d295c4be084576bcfc6fe09.jar" />
+    </item>
+    <item
+        jar="C:\Users\Iuliia\Downloads\DisplayingBitmaps\TesseractSample\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="3be474b1b21b31cf2fa93fe6bd641ae108d96452">
+        <dex dex="C:\Users\Iuliia\Downloads\DisplayingBitmaps\TesseractSample\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.2.1_0f2b60097972c4ca8d355cf00cf87f657ed8a477.jar" />
+    </item>
+
+</items>
