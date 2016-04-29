@@ -5,7 +5,7 @@ tess-two usage example. This Android project use Tesseract for performing OCR.
 
 
 ##Usefull info
-######What you need to start using Tesseract OCR classes in your Android project:
+#####What I need to start use Tesseract classes in my Android project:
 add to ```build.gradle```:
 
 ```
@@ -16,7 +16,7 @@ dependencies {
 
 That's all!
 
-######Why this example working only with images, capture in landscape mode? And not working if capture image in portrait mode?
+#####Why this example working only with images, captured in landscape mode? And not working if captured image in portrait mode?
 
 This code does not contain the setting correct orientation to Bitmap. Try to add:
 ```
@@ -60,5 +60,5 @@ try {
 }
 ```
 
-######Why I see black screen when OCR procesing?
+#####Why I see black screen when OCR procesing?
 You need to do OCR in extra thread. Implementation of this is out off topic. Reed about AsyncTask in Android.
