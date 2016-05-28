@@ -84,7 +84,7 @@ public class MainActivity extends Activity {
             prepareTesseract();
             startOCR(outputFileUri);
         } else {
-            Toast.makeText(this, "ERROR: Image was not obtained.", Toast.LENGTH_SHORT);
+            Toast.makeText(this, "ERROR: Image was not obtained.", Toast.LENGTH_SHORT).show();
         }
     }
 
