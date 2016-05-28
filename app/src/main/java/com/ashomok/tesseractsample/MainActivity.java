@@ -63,7 +63,7 @@ public class MainActivity extends Activity {
 
             String img_path = IMGS_PATH + "/ocr.jpg";
 
-            outputFileUri = Uri.fromFile(new File(img_path)); //try Uri.parse instead
+            outputFileUri = Uri.fromFile(new File(img_path));
 
             final Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
