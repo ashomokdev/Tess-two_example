@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.googlecode.tesseract.android.TessBaseAPI;
 
@@ -24,11 +25,12 @@ import java.io.OutputStream;
 public class MainActivity extends Activity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    private static final int PHOTO_REQUEST_CODE = 1;
+    static final int PHOTO_REQUEST_CODE = 1;
     private TessBaseAPI tessBaseApi;
-    private TextView textView;
-    private Uri outputFileUri;
+    TextView textView;
+    Uri outputFileUri;
     private static final String lang = "eng";
+    String result = "empty";
 
     private static final String DATA_PATH = Environment.getExternalStorageDirectory().toString() + "/TesseractSample/";
     private static final String TESSDATA = "tessdata";
@@ -61,7 +63,7 @@ public class MainActivity extends Activity {
 
             String img_path = IMGS_PATH + "/ocr.jpg";
 
-            outputFileUri = Uri.fromFile(new File(img_path));
+            outputFileUri = Uri.fromFile(new File(img_path)); //try Uri.parse instead
 
             final Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
@@ -81,6 +83,8 @@ public class MainActivity extends Activity {
         if (requestCode == PHOTO_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             prepareTesseract();
             startOCR(outputFileUri);
+        } else {
+            Toast.makeText(this, "ERROR: Image was not obtained.", Toast.LENGTH_SHORT);
         }
     }
 
@@ -103,7 +107,6 @@ public class MainActivity extends Activity {
     }
 
 
-
     private void prepareTesseract() {
         try {
             prepareDirectory(DATA_PATH + TESSDATA);
@@ -116,6 +119,7 @@ public class MainActivity extends Activity {
 
     /**
      * Copy tessdata files (located on assets/tessdata) to destination directory
+     *
      * @param path - name of directory with .traineddata files
      */
     private void copyTessDataFiles(String path) {
@@ -155,21 +159,26 @@ public class MainActivity extends Activity {
     /**
      * don't run this code in main thread - it stops UI thread. Create AsyncTask instead.
      * http://developer.android.com/intl/ru/reference/android/os/AsyncTask.html
+     *
      * @param imgUri
      */
     private void startOCR(Uri imgUri) {
+        try {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 4; // 1 - means max size. 4 - means maxsize/4 size. Don't use value <4, because you need more memory in the heap to store your data.
+            Bitmap bitmap = BitmapFactory.decodeFile(imgUri.getPath(), options);
 
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = 4; // 1 - means max size. 4 - means maxsize/4 size. Don't use value <4, because you need more memory in the heap to store your data.
-        Bitmap bitmap = BitmapFactory.decodeFile(imgUri.getPath(), options);
+            result = extractText(bitmap);
 
-        String text = extractText(bitmap);
+            textView.setText(result);
 
-        textView.setText(text);
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+        }
     }
 
 
-    private String extractText(Bitmap bitmap){
+    private String extractText(Bitmap bitmap) {
         try {
             tessBaseApi = new TessBaseAPI();
         } catch (Exception e) {
@@ -189,13 +198,13 @@ public class MainActivity extends Activity {
 //        tessBaseApi.setVariable(TessBaseAPI.VAR_CHAR_BLACKLIST, "!@#$%^&*()_+=-qwertyuiop[]}{POIU" +
 //                "YTRWQasdASDfghFGHjklJKLl;L:'\"\\|~`xcvXCVbnmBNM,./<>?");
 
-        Log.d(TAG, "training file loaded");
+        Log.d(TAG, "Training file loaded");
         tessBaseApi.setImage(bitmap);
         String extractedText = "empty result";
         try {
             extractedText = tessBaseApi.getUTF8Text();
         } catch (Exception e) {
-            Log.e(TAG, "Error in recognizing text...");
+            Log.e(TAG, "Error in recognizing text.");
         }
         tessBaseApi.end();
         return extractedText;
