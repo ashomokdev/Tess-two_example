@@ -75,7 +75,7 @@ public class MainActivity extends Activity implements ActivityCompat.OnRequestPe
 
             String img_path = IMGS_PATH + "/ocr.jpg";
 
-            outputFileUri = Uri.fromFile(new File(img_path)); //try Uri.parse instead
+            outputFileUri = Uri.fromFile(new File(img_path));
 
             final Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
@@ -95,7 +95,7 @@ public class MainActivity extends Activity implements ActivityCompat.OnRequestPe
         if (requestCode == PHOTO_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             doOCR();
         } else {
-            Toast.makeText(this, "ERROR: Image was not obtained.", Toast.LENGTH_SHORT);
+            Toast.makeText(this, "ERROR: Image was not obtained.", Toast.LENGTH_SHORT).show();
         }
     }
 
