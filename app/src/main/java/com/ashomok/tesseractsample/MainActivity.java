@@ -1,19 +1,26 @@
 package com.ashomok.tesseractsample;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ashomok.tesseractsample.tools.RequestPermissionsTool;
+import com.ashomok.tesseractsample.tools.RequestPermissionsToolImpl;
 import com.googlecode.tesseract.android.TessBaseAPI;
 
 import java.io.File;
@@ -22,7 +29,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements ActivityCompat.OnRequestPermissionsResultCallback  {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     static final int PHOTO_REQUEST_CODE = 1;
@@ -31,6 +38,7 @@ public class MainActivity extends Activity {
     Uri outputFileUri;
     private static final String lang = "eng";
     String result = "empty";
+    private RequestPermissionsTool requestTool; //for API >=23 only
 
     private static final String DATA_PATH = Environment.getExternalStorageDirectory().toString() + "/TesseractSample/";
     private static final String TESSDATA = "tessdata";
@@ -50,6 +58,10 @@ public class MainActivity extends Activity {
             });
         }
         textView = (TextView) findViewById(R.id.textResult);
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions();
+        }
     }
 
 
@@ -81,11 +93,15 @@ public class MainActivity extends Activity {
                                  Intent data) {
         //making photo
         if (requestCode == PHOTO_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            prepareTesseract();
-            startOCR(outputFileUri);
+            doOCR();
         } else {
             Toast.makeText(this, "ERROR: Image was not obtained.", Toast.LENGTH_SHORT);
         }
+    }
+
+    private void doOCR() {
+        prepareTesseract();
+        startOCR(outputFileUri);
     }
 
     /**
@@ -208,6 +224,32 @@ public class MainActivity extends Activity {
         }
         tessBaseApi.end();
         return extractedText;
+    }
+
+
+    private void requestPermissions() {
+        String[] permissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        requestTool = new RequestPermissionsToolImpl();
+        requestTool.requestPermissions(this, permissions);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        boolean grantedAllPermissions = true;
+        for (int grantResult : grantResults) {
+            if (grantResult != PackageManager.PERMISSION_GRANTED) {
+                grantedAllPermissions = false;
+            }
+        }
+
+        if (grantResults.length != permissions.length || (!grantedAllPermissions)) {
+
+            requestTool.onPermissionDenied();
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
     }
 }
 

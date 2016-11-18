@@ -10,7 +10,7 @@
         android:id="@+id/instruction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="INSTRUCTION: Capture image with ENG text, don't rotate screen, black screen for several sec when OCR processing is OK."
+        android:text="INSTRUCTION: Capture image with ENG text, don't rotate screen, WAIT SEVERAL SECONDS when OCR processing (You may see black screen)."
         />
 
     <Button

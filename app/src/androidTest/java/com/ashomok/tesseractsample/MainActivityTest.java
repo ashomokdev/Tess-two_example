@@ -16,6 +16,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
+/**
+ * This test works only for Max API<23 because don't request permissions at Run Time.
+ * todo - update tests
+ */
 public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity> {
 
     public static final String TEST_IMGS = "test_imgs";
