@@ -7,6 +7,8 @@
 .idea/dictionaries
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
+.idea/caches
+.idea/modules.xml
 
 # Sensitive or high-churn files:
 .idea/dataSources.ids
@@ -16,9 +18,15 @@
 .idea/dynamic.xml
 .idea/uiDesigner.xml
 
+# Android Studio
+*.iml
+.gradle
+.idea/modules.xml
+
 # Gradle:
 .idea/gradle.xml
 .idea/libraries
+.idea/codeStyles
 
 # Mongo Explorer plugin:
 .idea/mongoSettings.xml
@@ -42,3 +50,6 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+
+# macOs
+.DS_Store
