@@ -10,9 +10,11 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -47,6 +49,9 @@ public class MainActivity extends Activity implements ActivityCompat.OnRequestPe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
 
         Button captureImg = (Button) findViewById(R.id.action_btn);
         if (captureImg != null) {
